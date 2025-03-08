@@ -1,8 +1,6 @@
 import io
-import zipfile
 
 from fastapi import FastAPI, UploadFile, File
-import torch
 from ultralytics import YOLO
 import cv2
 import numpy as np
