@@ -2,18 +2,35 @@ import io
 
 from io import BytesIO
 from PIL import Image
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, Request
 from fastapi.responses import StreamingResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 from utils.models import ModelManager
 from utils.image_processing import preprocess_image, save_image_to_memory
+from utils.metrics import metrics_middleware, metrics_endpoint
 
 # Initialize model manager
 model_manager = ModelManager()
 
-app = FastAPI()
+app = FastAPI(title="MediScan API", description="Medical image analysis using YOLO models")
 
+# Add middlewares
+app.middleware("http")(metrics_middleware)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
+# Expose metrics endpoint
+@app.get("/metrics")
+async def metrics():
+    return await metrics_endpoint()
+
+# Original endpoints
 @app.post("/predict/")
 async def predict(file: UploadFile = File(...)):
     """Perform object detection on an uploaded image."""
@@ -64,6 +81,11 @@ async def acne_yolo_predict(file: UploadFile = File(...)):
 
     return StreamingResponse(img_buffer, media_type="image/jpeg")
 
+
+# Basic health check endpoint
+@app.get("/health")
+async def health():
+    return {"status": "healthy"}
 
 # Run API server
 if __name__ == "__main__":
