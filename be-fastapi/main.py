@@ -1,5 +1,3 @@
-import io
-
 from io import BytesIO
 from PIL import Image
 from fastapi import FastAPI, UploadFile, File, Request
