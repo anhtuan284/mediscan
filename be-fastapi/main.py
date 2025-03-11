@@ -113,6 +113,34 @@ async def yolo_predict_base64(image_data: Base64Image):
             content={"error": f"Failed to process image: {str(e)}"}
         )
 
+@app.post('/acne-yolo-predict-base64')
+async def acne_yolo_predict_base64(image_data: Base64Image):
+    """Process a base64 encoded image using YOLOv12 acne detection model and return the annotated image in base64."""
+    try:
+        # Decode base64 image
+        image_bytes = base64.b64decode(image_data.image)
+        img = Image.open(BytesIO(image_bytes)).convert("RGB")
+
+        # Perform prediction with acne model
+        results = model_manager.predict_acne(img)
+
+        # Convert result to PIL Image
+        img_with_boxes = results[0].plot()
+        img_with_boxes = Image.fromarray(img_with_boxes)
+
+        # Convert to base64
+        buffered = BytesIO()
+        img_with_boxes.save(buffered, format="JPEG")
+        img_str = base64.b64encode(buffered.getvalue()).decode()
+
+        return JSONResponse(content={"image": img_str})
+
+    except Exception as e:
+        return JSONResponse(
+            status_code=400,
+            content={"error": f"Failed to process image: {str(e)}"}
+        )
+
 # Basic health check endpoint
 @app.get("/health")
 async def health():
