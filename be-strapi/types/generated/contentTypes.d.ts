@@ -538,6 +538,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
 export interface ApiPatientPatient extends Struct.CollectionTypeSchema {
   collectionName: 'patients';
   info: {
+    description: '';
     displayName: 'Patient';
     pluralName: 'patients';
     singularName: 'patient';
@@ -554,7 +555,10 @@ export interface ApiPatientPatient extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    DOB: Schema.Attribute.Date;
+    email: Schema.Attribute.Email;
     fullName: Schema.Attribute.String;
+    heathStatus: Schema.Attribute.Enumeration<['healthy', 'serious', 'fatal']>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
