@@ -12,6 +12,20 @@ services:
       - TZ=UTC
     restart: unless-stopped
 
+  fastapi-densenet:
+    build:
+      context: ./be-fastapi-densenet
+    ports:
+      - "5000:5000"
+    environment:
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
+      - TZ=UTC
+    volumes:
+      - ./be-fastapi-densenet/models:/app/models
+    restart: unless-stopped
+
   prometheus:
     image: prom/prometheus:v2.45.0
     ports:
