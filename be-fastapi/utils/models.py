@@ -11,7 +11,7 @@ class ModelManager:
     def __init__(self):
         # Load models
         self.chest_xray_model = YOLO("./models/chest-xray/best.pt")
-        self.acne_model = YOLO("./models/acne/yolov8_acne.pt")
+        self.acne_model = YOLO("./models/acne/yolov8.pt")
     
     def predict_chest_xray(self, image: Union[np.ndarray, Image.Image], img_size: int = 640):
         """Run prediction with chest X-ray model."""
