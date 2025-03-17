@@ -13,3 +13,12 @@ providers:
     options:
       path: /etc/grafana/provisioning/dashboards
       foldersFromFilesStructure: true
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: true
+    editable: true
+    uid: "ceb75a44-8902-415c-8ccb-e25c76c63f15"
