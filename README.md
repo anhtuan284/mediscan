@@ -1,12 +1,21 @@
 # MediScan
 
-> Advanced Medical Image Analysis Platform powered by YOLO models
+> Advanced Medical Image Analysis Platform powered by YOLO and DenseNet121 models
+<div >
+  <a href="https://www.tensorflow.org/"><img src="https://img.shields.io/badge/TensorFlow-FF3F06?style=for-the-badge&logo=tensorflow&logoColor=white" alt="tensorflow"></a>
+  <a href="https://fastapi.tiangolo.com/"><img src="https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi" alt="fastapi"></a>
+  <a href="https://www.appsmith.com/"><img src="https://img.shields.io/badge/Appsmith-000000?style=for-the-badge&logo=appsmith&logoColor=yellow" alt="appsmith"></a>
+  <a href="https://strapi.io/"><img src="https://img.shields.io/badge/strapi-%232E7EEA.svg?style=for-the-badge&logo=strapi&logoColor=white" alt="strapi"></a>
+  <a href="https://www.docker.com/"><img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" alt="docker"></a>
+  <a href="https://grafana.com/"><img src="https://img.shields.io/badge/grafana-%23F46800.svg?style=for-the-badge&logo=grafana&logoColor=white" alt="grafana"></a>
+    <a href="https://ultralytics.com/yolov8"><img src="https://img.shields.io/badge/YOLO-00FFFF?style=for-the-badge&logo=yolo&logoColor=black" alt="yolo"></a>
+</div>
 
 ## Table of Contents
 - [Core Features](#core-features)
 - [Application UI Demo](#application-ui-demo)
-  - [Chest X-Ray Analysis Interface](#chest-x-ray-analysis-interface)
-  - [Skin Condition Analysis](#skin-condition-analysis)
+  - [System Dashboard](#system-dashboard)
+  - [Medical Analysis Interface](#medical-analysis-interface)
 - [System Overview](#system-overview)
   - [System Flow Architecture](#system-flow-architecture)
   - [Technology Stack](#technology-stack)
@@ -37,19 +46,20 @@
 
 ## Application UI Demo
 
-### Chest X-Ray Analysis Interface
-![Demo 1](./assets/images/demo1.png)
-*Chest X-Ray DenseNen121 prediction and heatmap by Grad-CAM*
 
-![Demo 2](./assets/images/demo2.png)
-*Highest disease possibility*
 
-![Demo 3](./assets/images/demo3.png)
-*X-Ray disease detection by YOLO*
+### Medical Analysis Interface
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 20px 0;">
+    <img src="./assets/images/demo1.png" alt="DenseNet121 Prediction" width="400"/>
+    <img src="./assets/images/demo2.png" alt="Disease Probability" width="400"/>
+    <img src="./assets/images/demo3.png" alt="YOLO Detection" width="400"/>
+    <img src="./assets/images/demo4.png" alt="Acne Detection" width="400"/>
+</div>
 
-### Skin Condition Analysis
-![Demo 4](./assets/images/demo4.png)
-*Acne detection using YoloV8*
+### System Dashboard
+<div style="margin: 20px 0;">
+    <img src="./assets/images/monitor.png" alt="System Monitoring Dashboard" width="100%"/>
+</div>
 
 ## System Overview
 
@@ -63,44 +73,25 @@
 
 #### Tech Stack Breakdown
 
-##### Data Processing & Model Training 🧮
-- **Libraries**: 
-  - TensorFlow & Keras
-  - PyTorch
-  - scikit-learn
-  - Ultralytics YOLO
-  - seaborn
-- **Purpose**: Advanced data preprocessing, visualization, and deep learning model training/testing
+- **Data Processing & ML** 🧮
+  - TensorFlow, PyTorch, scikit-learn, YOLO
+  - Purpose: Model training and data preprocessing
 
-##### AI Server 🤖
-- **Core Frameworks**:
-  - FastAPI: High-performance API server
-  - MLflow: Experiment tracking
-  - GitHub Actions: CI/CD automation
-- **Models**:
-  - TensorFlow: DenseNet implementation
-  - Ultralytics YOLO: Object detection
-- **Purpose**: Robust model serving and automated workflows
+- **AI Server** 🤖
+  - FastAPI, MLflow, DenseNet, YOLO
+  - Purpose: Model serving and experiment tracking
 
-##### Front-end Interface 🎨
-- **Platform**: Appsmith
-- **Features**:
-  - Interactive UI components
-  - Real-time AI result visualization
-  - Image annotation display
-- **Purpose**: User-friendly interface for medical professionals
+- **Frontend** 🎨
+  - Appsmith
+  - Purpose: Medical imaging interface
 
-##### Document Backend 📁
-- **Technologies**:
-  - Strapi: Headless CMS
-  - SQLite: Data storage
-- **Purpose**: Secure patient record management and document API integration
+- **Backend** 📁
+  - Strapi CMS, SQLite
+  - Purpose: Patient data management
 
-##### Monitoring & Analytics 📊
-- **Tools**:
-  - Grafana: Metric visualization
-  - Prometheus: Data collection
-- **Purpose**: Real-time performance monitoring and system analytics
+- **Monitoring** 📊
+  - Grafana, Prometheus
+  - Purpose: System metrics and analytics
 
 ---
 
